@@ -15,8 +15,8 @@ import os
 import re
 import urllib
 
-input_url = str(input("Enter tiktok url: "))
-
+input_url = str(input("Enter tiktok url(if you haven't url click enter): "))
+default_urls = 'https://www.tiktok.com/@baptistefernandez1/video/7079817362693688581?is_copy_url=1&is_from_webapp=v1&q=programing&t=1659422697792'
 
 DOMAIN_FORMAT = re.compile(
     r"(?:^(\w{1,255}):(.{1,255})@|^)" # http basic authentication [optional]
@@ -36,7 +36,8 @@ def validate_url(url: str):
     url = url.strip()
 
     if not url:
-        raise Exception("No URL specified")
+        print("if you haven't url we use default")
+        return default_urls
 
     if len(url) > 2048:
         raise Exception("URL exceeds its maximum length of 2048 characters (given length={})".format(len(url)))
